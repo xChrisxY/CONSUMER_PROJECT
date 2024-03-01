@@ -1,4 +1,4 @@
-import amqp from 'amqplib'
+import amqp, { connect } from 'amqplib'
 import axios from 'axios';
 
 export async function consumeMessages(url, queue) {
@@ -18,25 +18,38 @@ export async function consumeMessages(url, queue) {
 
                         const content = message.content.toString();
 
+                        console.log(content)
+
                         try {
 
-                              await axios.post('https://rest-api-ts-hex-v2.onrender.com/api/tasks', {
-      
-                                    title: `Realizar arquitectura hexagonal para ${content}`,
-                                    description: "Tienes una nueva tarea a realizar",
-                                    dueDate: new Date().toISOString().split("T")[0],
-                                    userId: 13
-      
-                              });
-      
+                              // await axios.post('https://rest-api-ts-hex-v2.onrender.com/api/tasks', {
+
+                              //       title: `Realizar arquitectura hexagonal para ${content}`,
+                              //       description: "Tienes una nueva tarea a realizar",
+                              //       dueDate: new Date().toISOString().split("T")[0],
+                              //       userId: 13
+
+                              // });
+
+                              fetch('https://rest-api-ts-hex-v2.onrender.com/api/tasks', {
+                                    
+                                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: {
+
+                                          title: `Realizar arquitectura hexagonal para ${content}`,
+                                          description: "Tienes una nueva tarea a realizar",
+                                          dueDate: new Date().toISOString().split("T")[0],
+                                          userId: 13
+                                    }
+                              },)
+
                               console.log('Mensaje recibido:', content);
-                              //channel.ack(message);
-                              
+                              channel.ack(message);
+
                         } catch (error) {
 
                               console.log('ups');
                               console.log(error)
-                              
+
                         }
                   }
             });
