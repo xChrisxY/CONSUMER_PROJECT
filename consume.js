@@ -30,10 +30,11 @@ export async function consumeMessages(url, queue) {
                               });
       
                               console.log('Mensaje recibido:', content);
-                              // channel.ack(message);
+                              //channel.ack(message);
                               
                         } catch (error) {
 
+                              console.log('ups');
                               console.log(error)
                               
                         }
