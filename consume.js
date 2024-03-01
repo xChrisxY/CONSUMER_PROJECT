@@ -31,16 +31,17 @@ export async function consumeMessages(url, queue) {
 
                               // });
 
-                              fetch('https://rest-api-ts-hex-v2.onrender.com/api/tasks', {
-                                    
-                                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: {
+                              const object = {
 
-                                          title: `Realizar arquitectura hexagonal para ${content}`,
-                                          description: "Tienes una nueva tarea a realizar",
-                                          dueDate: new Date().toISOString().split("T")[0],
-                                          userId: 13
-                                    }
-                              },)
+                                    title: `Realizar arquitectura hexagonal para ${content}`,
+                                    description: "Tienes una nueva tarea a realizar bro",
+                                    dueDate: new Date().toISOString().split("T")[0],
+                                    userId: 13
+                              }
+
+                              fetch('https://rest-api-ts-hex-v2.onrender.com/api/tasks', {
+
+                                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body : JSON.stringify(object) },)
 
                               console.log('Mensaje recibido:', content);
                               channel.ack(message);
