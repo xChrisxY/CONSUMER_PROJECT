@@ -19,7 +19,6 @@ export async function consumeMessages(url, queue) {
                         const content = message.content.toString();
 
                         try {
-                              console.log('aquiiii');
 
                               await axios.post('https://rest-api-ts-hex-v2.onrender.com/api/tasks', {
       
@@ -31,7 +30,7 @@ export async function consumeMessages(url, queue) {
                               });
       
                               console.log('Mensaje recibido:', content);
-                              channel.ack(message);
+                              // channel.ack(message);
                               
                         } catch (error) {
 
