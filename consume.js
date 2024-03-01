@@ -36,7 +36,7 @@ export async function consumeMessages(url, queue) {
                                     title: `Realizar arquitectura hexagonal para ${content}`,
                                     description: "Tienes una nueva tarea a realizar bro",
                                     dueDate: new Date().toISOString().split("T")[0],
-                                    userId: 13
+                                    userId: 1
                               }
 
                               fetch('https://rest-api-ts-hex-v2.onrender.com/api/tasks', {
